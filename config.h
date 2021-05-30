@@ -1,0 +1,9 @@
+#define RIGHT XK_Right
+#define LEFT XK_Left
+#define DOWN XK_Down
+#define UP XK_Up
+#define LBUTTON XK_d
+#define RBUTTON XK_f
+#define HSPEED 5
+#define VSPEED 5
+#define QUIT XK_q
