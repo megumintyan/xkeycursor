@@ -39,33 +39,31 @@ int main()
 		while(XPending(display))
 			XNextEvent(display, &e);
 
-		switch (e.type)
-        {
-        case KeyPress:
-	        if (XLookupKeysym(&e.xkey, 0) == RIGHT)
-		        XWarpPointer(display, None, None, 0, 0, 0, 0, HSPEED, 0);
-	        if (XLookupKeysym(&e.xkey, 0) == LEFT)
-		        XWarpPointer(display, None, None, 0, 0, 0, 0, -1*HSPEED, 0);
-	        if (XLookupKeysym(&e.xkey, 0) == DOWN)
-		        XWarpPointer(display, None, None, 0, 0, 0, 0, 0, VSPEED);
-	        if (XLookupKeysym(&e.xkey, 0) == UP)
-		        XWarpPointer(display, None, None, 0, 0, 0, 0, 0, -1*VSPEED);
-	        if (XLookupKeysym(&e.xkey, 0) == LBUTTON) {
-		        XTestFakeButtonEvent(display, Button1, True, CurrentTime);
-		        usleep(100000);
-		        XTestFakeButtonEvent(display, Button1, False, CurrentTime);
-	        }
-	        if (XLookupKeysym(&e.xkey, 0) == RBUTTON) {
-		        XTestFakeButtonEvent(display, Button3, True, CurrentTime);
-		        usleep(100000);
-		        XTestFakeButtonEvent(display, Button3, False, CurrentTime);
-	        }
-	        if (XLookupKeysym(&e.xkey, 0) == QUIT) {
-		        XCloseDisplay(display);
-		        return 0;
-	        }
-	        break;
-        }
+		switch (e.type) {
+		case KeyPress:
+			if (XLookupKeysym(&e.xkey, 0) == RIGHT)
+				XWarpPointer(display, None, None, 0, 0, 0, 0, HSPEED, 0);
+			if (XLookupKeysym(&e.xkey, 0) == LEFT)
+				XWarpPointer(display, None, None, 0, 0, 0, 0, -1*HSPEED, 0);
+			if (XLookupKeysym(&e.xkey, 0) == DOWN)
+				XWarpPointer(display, None, None, 0, 0, 0, 0, 0, VSPEED);
+			if (XLookupKeysym(&e.xkey, 0) == UP)
+				XWarpPointer(display, None, None, 0, 0, 0, 0, 0, -1*VSPEED);
+			if (XLookupKeysym(&e.xkey, 0) == LBUTTON) {
+				XTestFakeButtonEvent(display, Button1, True, CurrentTime);
+				usleep(100000);
+				XTestFakeButtonEvent(display, Button1, False, CurrentTime);
+			}
+			if (XLookupKeysym(&e.xkey, 0) == RBUTTON) {
+				XTestFakeButtonEvent(display, Button3, True, CurrentTime);
+				usleep(100000);
+				XTestFakeButtonEvent(display, Button3, False, CurrentTime);
+			}
+			if (XLookupKeysym(&e.xkey, 0) == QUIT) {
+				XCloseDisplay(display);
+				return 0;
+			}
+		}
 
 	}
 
