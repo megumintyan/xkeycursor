@@ -13,6 +13,8 @@ xkc: $(OBJS)
 .c.o:
 	gcc $(CFLAGS) -c $< -o $@
 
+main.o: config.h
+
 run: all
 	./xkc
 
