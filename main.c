@@ -27,6 +27,8 @@ int main()
 
 	x11_fd = ConnectionNumber(display);
 
+	float hspeed_acc = HSPEED;
+	float vspeed_acc = VSPEED;
 	while(1) {
 		FD_ZERO(&in_fds);
 		FD_SET(x11_fd, &in_fds);
@@ -42,13 +44,13 @@ int main()
 		switch (e.type) {
 		case KeyPress:
 			if (XLookupKeysym(&e.xkey, 0) == RIGHT)
-				XWarpPointer(display, None, None, 0, 0, 0, 0, HSPEED, 0);
+				XWarpPointer(display, None, None, 0, 0, 0, 0, hspeed_acc, 0);
 			if (XLookupKeysym(&e.xkey, 0) == LEFT)
-				XWarpPointer(display, None, None, 0, 0, 0, 0, -1*HSPEED, 0);
+				XWarpPointer(display, None, None, 0, 0, 0, 0, -1*hspeed_acc, 0);
 			if (XLookupKeysym(&e.xkey, 0) == DOWN)
-				XWarpPointer(display, None, None, 0, 0, 0, 0, 0, VSPEED);
+				XWarpPointer(display, None, None, 0, 0, 0, 0, 0, vspeed_acc);
 			if (XLookupKeysym(&e.xkey, 0) == UP)
-				XWarpPointer(display, None, None, 0, 0, 0, 0, 0, -1*VSPEED);
+				XWarpPointer(display, None, None, 0, 0, 0, 0, 0, -1*vspeed_acc);
 			if (XLookupKeysym(&e.xkey, 0) == LBUTTON) {
 				XTestFakeButtonEvent(display, Button1, True, CurrentTime);
 				usleep(100000);
@@ -63,6 +65,12 @@ int main()
 				XCloseDisplay(display);
 				return 0;
 			}
+			hspeed_acc+=HSPEEDACC;
+			vspeed_acc+=VSPEEDACC;
+			break;
+		case KeyRelease:
+			hspeed_acc = HSPEED;
+			vspeed_acc = VSPEED;
 		}
 
 	}

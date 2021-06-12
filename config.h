@@ -4,6 +4,8 @@
 #define UP XK_Up
 #define LBUTTON XK_d
 #define RBUTTON XK_f
-#define HSPEED 5
-#define VSPEED 5
+#define HSPEED 1
+#define VSPEED 1
+#define HSPEEDACC 0.2
+#define VSPEEDACC 0.2
 #define QUIT XK_q
